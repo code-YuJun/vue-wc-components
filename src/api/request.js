@@ -23,11 +23,10 @@ service.interceptors.response.use(
   (response) => {
     const res = response.data
     // 根据你后端结构调整
-    if (res.code !== 0) {
-      console.error(res.message || 'Error')
-      return Promise.reject(res)
+    if (res) {
+      return Promise.resolve(res)
     }
-    return res.data
+    return res
   },
   (error) => {
     console.error(error.message || 'Network Error')

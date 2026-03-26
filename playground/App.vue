@@ -2,12 +2,12 @@
  组件库演练场：本地开发的时候使用
 -->
 <script setup>
-import { register } from '@/extension/webComponent/aihelper-extension-videoplayer';
+import { register } from '@/components/demo-extension';
 register()
 </script>
 
 <template>
-    <aihelper-extension-videoplayer></aihelper-extension-videoplayer>
+    <demo-extension></demo-extension>
 </template>
 
 <style>
