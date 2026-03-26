@@ -1,248 +1,179 @@
 # vue-wc-components
 
-基于 Vue 3.2 的 `defineComponent` + `defineCustomElement` 构建的 Web Components 组件库，支持在任意前端框架（Vue / React / 原生 HTML）中使用。
+一个基于 Vue 3 开发的 Web Components 组件库，提供可在任何框架中使用的自定义元素。
 
----
+## 特性
 
-## ✨ 特性
+- ✅ 基于 Vue 3 开发的 Web Components
+- ✅ 可在任何框架中使用（React、Angular、Vue 等）
+- ✅ 支持组件自定义和扩展
+- ✅ 现代化的开发流程
+- ✅ 响应式设计
 
-* 基于 Vue 3 Composition API
-* 输出标准 Custom Elements（浏览器原生支持）
-* 支持跨框架使用（Vue / React / Angular / HTML）
-* 支持按需加载
-* Shadow DOM 样式隔离
-* 支持打包为 npm 包或 CDN 直接引入
+## 安装
 
----
-
-## 📦 安装
+### 克隆仓库
 
 ```bash
-npm install your-lib-name
+git clone https://github.com/code-YuJun/vue-wc-components.git
+cd vue-wc-components
+npm install
 ```
 
-或通过 CDN：
+## 快速开始
+
+### 创建新组件
+
+```bash
+npm run create
+```
+
+### 开发模式
+
+```bash
+npm run dev
+```
+
+### 构建生产版本
+
+```bash
+npm run build
+```
+
+## 项目结构
+
+```
+vue-wc-components/
+├── build/            # 构建配置
+│   ├── inquirer.js   # 组件创建交互配置
+│   └── vite.config.js # Vite 配置
+├── create/           # 组件创建脚本
+│   └── index.js      # 组件创建主脚本
+├── playground/       # 开发环境测试
+│   ├── App.vue       # 测试应用
+│   ├── index.html    # 入口 HTML
+│   └── main.js       # 入口脚本
+├── src/              # 源代码
+│   ├── api/          # API 相关
+│   ├── assets/       # 静态资源
+│   ├── components/   # 组件目录
+│   ├── hooks/        # 自定义 hooks
+│   ├── style/        # 样式文件
+│   └── utils/        # 工具函数
+├── template/         # 组件模板
+├── package.json      # 项目配置
+└── readme.md         # 项目说明
+```
+
+## 组件使用
+
+### 基本使用
+
+1. 构建组件：
+
+```bash
+npm run build
+```
+
+2. 在 HTML 中引入组件：
 
 ```html
-<script type="module" src="https://unpkg.com/your-lib-name/dist/index.es.js"></script>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue WC Components</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./extension.min.js"></script>
+</head>
+<body>
+    <script>
+        // 注册组件
+        window.Extension["demo-extension"].register();
+    </script>
+    <demo-extension></demo-extension>
+</body>
+</html>
 ```
 
----
+### 在框架中使用
 
-## 🚀 快速开始
-
-### 1. 注册组件
-
-```ts
-import { defineCustomElement } from 'vue'
-import MyButton from './components/MyButton'
-
-const MyButtonElement = defineCustomElement(MyButton)
-
-if (!customElements.get('my-button')) {
-  customElements.define('my-button', MyButtonElement)
-}
-```
-
----
-
-### 2. 使用组件
-
-```html
-<my-button label="Click me"></my-button>
-```
-
----
-
-## 🧩 示例组件
-
-```ts
-import { defineComponent, h } from 'vue'
-
-export default defineComponent({
-  name: 'MyButton',
-  props: {
-    label: String
-  },
-  setup(props) {
-    return () => h('button', props.label)
-  }
-})
-```
-
----
-
-## 📁 项目结构
-
-```
-src/
- ├─ components/
- │   ├─ Button/
- │   │   ├─ Button.ts
- │   │   └─ index.ts
- │
- ├─ register-all.ts
- ├─ register-on-demand.ts
- └─ main.ts
-```
-
----
-
-## 🔧 按需注册
-
-```ts
-export function registerButton() {
-  if (!customElements.get('my-button')) {
-    customElements.define(
-      'my-button',
-      defineCustomElement(Button)
-    )
-  }
-}
-```
-
----
-
-## 🎨 样式说明
-
-默认使用 Shadow DOM：
-
-```ts
-defineCustomElement(Component, {
-  styles: [`
-    button {
-      color: red;
-    }
-  `]
-})
-```
-
-> 注意：Shadow DOM 会隔离样式，外部 CSS 无法直接影响组件内部
-
----
-
-## 🔁 Props & Events
-
-### Props
-
-```html
-<my-button label="hello"></my-button>
-```
-
-或：
+#### Vue 3
 
 ```js
-const el = document.querySelector('my-button')
-el.label = 'hello'
-```
-
----
-
-### Events
-
-组件内部：
-
-```ts
-emit('click')
-```
-
-外部监听：
-
-```js
-el.addEventListener('click', () => {
-  console.log('clicked')
-})
-```
-
----
-
-## 📦 打包配置（Vite）
-
-```ts
-import { defineConfig } from 'vite'
-
-export default defineConfig({
-  build: {
-    lib: {
-      entry: './src/register-all.ts',
-      name: 'MyWebComponents',
-      fileName: 'my-wc',
-      formats: ['es']
-    },
-    rollupOptions: {
-      external: ['vue']
+  // demo
+  reloadWebCpn(name, version, key) {
+    try {
+      const link = document.createElement("link");
+      link.href = `/${name}@${version}/dist/style.css`;
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
+      const script = document.createElement("script");
+      script.src = `/${name}@${version}/dist/extension.min.js`;
+      script.onload = () => {
+        window.Extension && window.Extension[key] && window.Extension[key].register();
+        // key和name同时存在且不同，嗅探命名空间下另一属性能否注册（兼容逻辑）
+        if (key !== name) {
+          window.Extension && window.Extension[name] && window.Extension[name].register();
+        }
+        const element = document.createElement(name);
+        document.body.appendChild(element);
+      };
+      script.onerror = () => {
+        console.log("加载失败");
+      };
+      document.body.appendChild(script);
+    } catch (err) {
+      console.log(err);
     }
   }
-})
 ```
 
----
+## 开发指南
 
-## ⚠️ 注意事项
+### 创建新组件
 
-### 1. Vue 版本要求
+使用内置的组件创建命令：
 
-必须使用 Vue >= 3.2
-
----
-
-### 2. 自定义元素命名规范
-
-必须包含 `-`
-
-```html
-<my-button></my-button> ✅
-<mybutton></mybutton> ❌
+```bash
+npm run create
 ```
 
----
+按照提示输入组件名称和描述，系统会自动生成组件模板。
 
-### 3. 避免重复注册
+### 组件结构
 
-```ts
-if (!customElements.get('my-button')) {
-  customElements.define('my-button', MyButtonElement)
-}
-```
+每个组件包含以下文件：
 
----
+- `index.ce.vue` - 组件的 Vue 单文件组件
+- `index.js` - 组件的注册和导出
+- `common.css` - 组件的样式
+- `package.json` - 组件的配置
 
-### 4. 属性类型限制
+### 开发流程
 
-HTML 属性仅支持字符串：
+1. 创建新组件：`npm run create`
+2. 开发组件：修改 `src/components/{component-name}/index.ce.vue`
+3. 测试组件：运行 `npm run dev` 查看效果
+4. 构建组件：运行 `npm run build` 生成生产版本
 
-```html
-<my-comp data='{"a":1}'></my-comp>
-```
+## 技术栈
 
-需在组件内手动解析：
+- **框架**：Vue 3
+- **构建工具**：Vite
+- **HTTP 客户端**：Axios
+- **样式**：SCSS
 
-```ts
-JSON.parse(props.data)
-```
+## 贡献
 
----
+欢迎提交 Issue 和 Pull Request 来改进这个项目！
 
-## 🧱 构建模式建议
+## 许可证
 
-建议提供两种构建方式：
+ISC License
 
-| 模式       | 说明                         |
-| -------- | -------------------------- |
-| full     | 包含 Vue runtime，适用于非 Vue 项目 |
-| external | 不包含 Vue，适用于 Vue 项目         |
+## 联系方式
 
----
-
-## 📌 使用场景
-
-* 跨框架组件库
-* 微前端组件共享
-* Design System 基础组件
-* 插件化 UI 组件（浏览器扩展 / Electron）
-
----
-
-## 📄 License
-
-MIT
+- GitHub: [code-YuJun/vue-wc-components](https://github.com/code-YuJun/vue-wc-components)
+- Issues: [https://github.com/code-YuJun/vue-wc-components/issues](https://github.com/code-YuJun/vue-wc-components/issues)
