@@ -1,0 +1,32 @@
+{
+  "name": "vue-wc-components",
+  "version": "1.0.0",
+  "description": "WebComponst组件库",
+  "scripts": {
+    "create": "node create/index.js",
+    "dev": "vite --mode development --config build/vite.config.js",
+    "build": "vite build --emptyOutDir --mode production --config build/vite.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-YuJun/vue-wc-components.git"
+  },
+  "author": "qiangyujun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-YuJun/vue-wc-components/issues"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.2",
+    "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
+    "vite": "^2.8.4",
+    "vite-plugin-banner": "^0.7.1"
+  },
+  "dependencies": {
+    "axios": "0.26.1",
+    "dayjs": "1.11.9",
+    "vue": "^3.2.31"
+  },
+  "homepage": "https://github.com/code-YuJun/vue-wc-components#readme"
+}

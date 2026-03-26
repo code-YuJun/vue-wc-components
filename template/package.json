@@ -1,0 +1,7 @@
+{
+  "name": "@jd/$biz-extension-$name",
+  "version": "1.0.0",
+  "files": [
+    "dist"
+  ]
+}
