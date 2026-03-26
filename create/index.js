@@ -1,14 +1,14 @@
 /**
  * 创建 webcomponent 插件
  */
-// 命令行创建
+// 命令行操作
 const inquirer = require("inquirer");
 // 在 Node.js 终端输出带颜色和样式的文本
 const chalk = require("chalk");
 const fs = require("fs");
 const path = require("path");
 
-const BASE_URL = path.resolve(__dirname, `../../src/extension`);
+const BASE_URL = path.resolve(__dirname, '../src/components');
 
 // 请输入插件名称
 function inputPluginName() {
@@ -128,20 +128,24 @@ function dirContentReplace(filePath, replaceObj) {
 }
 
 async function run() {
-  let { name } = await inputPluginName();
-  // 目标文件夹   
-  const targetDir = path.resolve(BASE_URL, type, `${biz}-extension-${name}`);
-  const sourceDir = path.resolve(__dirname, type);
+  // 获取组件名称
+  const { name } = await inputPluginName();
+  // 组件生成的目标文件夹   
+  const targetDir = path.resolve(BASE_URL, `${name}-extension`);
+  // 模版文件夹
+  const templateDir = path.resolve(__dirname, '../template');
   console.log(chalk.blue("开始创建组件！"));
   const hasTargetDir = fsExistSync(targetDir);
+  // 如果这个组件已经创建过了
   if (hasTargetDir) {
     console.error("该插件已存在！");
     process.exit(1);
   }
   console.log(chalk.blue("开始创建目标文件夹！"));
+  // 创建文件夹
   fs.mkdirSync(targetDir);
   console.log(chalk.blue("开始复制模版！"));
-  copyDir(sourceDir, targetDir, (error) => {
+  copyDir(templateDir, targetDir, (error) => {
     if (error) {
       console.log(error);
       process.exit(1);
@@ -151,7 +155,6 @@ async function run() {
   setTimeout(() => {
     dirContentReplace(targetDir, [
       { key: '$name', value: name },
-      { key: '$biz' , value: biz },
     ]);
     console.log(chalk.blue("创建完成！"));
   }, 1000);
