@@ -1,9 +1,11 @@
 import { defineConfig } from "vite";
 import path from "path";
 import vue from "@vitejs/plugin-vue";
+// 打包产物顶部显示当前产物信息
 import banner from "vite-plugin-banner";
 
 const inquirer = require("./inquirer");
+// 开发时 打包的入口，默认会去找里面的 index.html
 const VITE_URL = path.resolve(__dirname, `../playground`);
 
 export default async (ev) => {
@@ -25,6 +27,8 @@ export default async (ev) => {
         content: `plugins: ${entryName} * version: v${version} env: ${mode}`,
       }),
       // webcomponent 组件打包
+      // 开发环境和线上打包环境都走这个配置
+      // 告诉 Vue 编译器，凡是带 - 的标签，一律当作“原生自定义元素（Custom Element）”，而不是 Vue 组件，直接渲染，不参与 Vue 组件解析
       vue({
         template: {
           compilerOptions: {
@@ -34,13 +38,15 @@ export default async (ev) => {
       }),
     ],
     build: {
+      // 保留最新语法（箭头函数、class 等），不做降级
       target: "esnext",
+      // 使用 Terser 进行压缩
       minify: "terser",
       // 库模式打包
       lib: {
+        // 找里面的 index.js 了
         entry: path.resolve(__dirname, `../src/components/${entryName}`),
         formats: ["iife"],
-        name: entryName,
         fileName: () => `extension.min.js`,
       },
       // 输出目录
@@ -49,7 +55,7 @@ export default async (ev) => {
         output: {
           // 全局变量的名称，可以使用点号来创建命名空间
           name: `Extension.${entryName}`,
-          // 当设置为 true 时，会保留原有的命名空间，如果它已经存在
+          // 如果 window.Extension 已存在，不要覆盖，而是扩展它
           extend: true,
         },
       },

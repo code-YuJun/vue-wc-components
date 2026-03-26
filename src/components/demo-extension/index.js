@@ -1,4 +1,5 @@
 import { defineCustomElement } from 'vue'
+// vue在默认情况下，以.ce.vue 结尾的文件将以Web Component导入
 import demo from './index.ce.vue'
 import './common.css';
 
