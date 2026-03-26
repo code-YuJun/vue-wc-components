@@ -47,6 +47,7 @@ export default async (ev) => {
         // 找里面的 index.js 了
         entry: path.resolve(__dirname, `../src/components/${entryName}`),
         formats: ["iife"],
+        name: entryName,
         fileName: () => `extension.min.js`,
       },
       // 输出目录
