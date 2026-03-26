@@ -102,13 +102,17 @@ npm run build
 #### Vue 3
 
 ```js
+  // 建议使用动态加载的方式
   // demo
   reloadWebCpn(name, version, key) {
     try {
+      // 引入样式
       const link = document.createElement("link");
       link.href = `/${name}@${version}/dist/style.css`;
       link.rel = "stylesheet";
       document.head.appendChild(link);
+
+      // 引入JS资源
       const script = document.createElement("script");
       script.src = `/${name}@${version}/dist/extension.min.js`;
       script.onload = () => {

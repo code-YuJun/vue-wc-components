@@ -7,7 +7,7 @@ register()
 </script>
 
 <template>
-    <demo-extension></demo-extension>
+    <demo-extension title="标题" :count="123"/>
 </template>
 
 <style>

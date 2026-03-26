@@ -4,7 +4,12 @@ import { get } from "@/api/http";
 import { useToggle } from "@/hooks/useToggle.js";
 import { compareVersion } from '@/utils'
 const data = ref(null);
-const { state, toggle, setTrue, setFalse } = useToggle();
+const { state, toggle } = useToggle();
+interface Props {
+  count: number
+  title?: string
+}
+const props = defineProps<Props>()
 onMounted(() => {
   get("/users")
     .then((res: any) => {
@@ -33,6 +38,9 @@ onMounted(() => {
     <div>
       {{ compareVersion("1.1.1", "1.2.1") }}
     </div>
+    <div>props：</div>
+    <!-- 这里注意！！！ 都是字符串，需要手动转换 -->
+    <div>{{ title }} {{ count }}</div>
   </div>
 </template>
 
