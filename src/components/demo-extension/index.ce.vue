@@ -24,7 +24,7 @@ onMounted(() => {
     <div>
       <img src="@/assets/img/github.jpeg" />
     </div>
-    <div>调用接口：</div>
+    <div class="dataColor">调用接口：</div>
     <div>{{ data }}</div>
     <div>hooks：</div>
     <button @click="toggle">点击按钮</button>
