@@ -1,5 +1,5 @@
 ## 为什么要学习 webComponent
-需要给多个前端业务场景/团队提供一个公共的组件，不限制框架，并且父页面不能影响组件的样式和逻辑。组件也不能影响父页面的样式和逻辑。需要考虑 CSS / JS 隔离。
+需要给多个前端业务场景/团队提供一个公共的组件，不限制框架，并且父页面不能影响组件的样式和逻辑。组件也不能影响父页面的样式和逻辑。需要考虑 隔离 DOM 和 CSS。
 
 ## webComponent
 MDN 定义：https://developer.mozilla.org/zh-CN/docs/Web/API/Web_components
@@ -40,10 +40,10 @@ customElements.define('my-card', MyCard)
 </my-card>
 ```
 
-## 为什么 shadow DOM 能够实现 CSS 和 JS 隔离
+## 为什么 shadow DOM 能够实现 隔离 DOM 和 CSS
 https://chatgpt.com/s/t_69c51808ca4081918115721a94bf97a5
 
-特性：Shadow DOM 本质是一个“独立的 DOM 子树 + 独立的作用域边界”，浏览器在实现上给它加了一层“作用域隔离规则”，从而实现 CSS 和（部分）JS 的隔离。
+特性：Shadow DOM 本质是一个“独立的 DOM 子树 + 独立的作用域边界”，浏览器在实现上给它加了一层“作用域隔离规则”，从而实现 CSS 和（部分）DOM 的隔离。
 
 CSS 选择器不会“穿透 shadow boundary”，内部不污染外部。
 ```css
