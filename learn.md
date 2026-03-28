@@ -51,13 +51,6 @@ CSS 选择器不会“穿透 shadow boundary”，内部不污染外部。
 :host p { ... }
 ```
 DOM 查询被隔离, ```document.querySelector('p')``` 拿不到 shadow DOM 内的 <p>，必须 ```this.shadowRoot.querySelector('p')```
-事件机制被“重定向”
-```js
-button.addEventListener('click', e => {
-  console.log(e.target)
-})
-```
-如果点击 shadow DOM 内部元素，外部拿到的 e.target 是```<my-card>```，而不是 ```<button>```
 
 
 ## 常见的原生 webComponent 组件是什么
