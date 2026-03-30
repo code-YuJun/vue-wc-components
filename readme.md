@@ -181,3 +181,7 @@ ISC License
 
 - GitHub: [code-YuJun/vue-wc-components](https://github.com/code-YuJun/vue-wc-components)
 - Issues: [https://github.com/code-YuJun/vue-wc-components/issues](https://github.com/code-YuJun/vue-wc-components/issues)
+
+## 架构
+https://chatgpt.com/s/t_69ca25fbc4588191a6c6165ba74a3826
+
