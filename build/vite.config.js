@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue";
 import banner from "vite-plugin-banner";
 
 const inquirer = require("./inquirer");
-// 开发时 打包的入口，默认会去找里面的 index.html
+// 开发时入口，默认会去找里面的 index.html
 const VITE_URL = path.resolve(__dirname, `../playground`);
 
 export default async (ev) => {

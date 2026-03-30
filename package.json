@@ -5,6 +5,7 @@
   "scripts": {
     "create": "node create/index.js",
     "dev": "vite --mode development --config build/vite.config.js",
+    "dev:entry": "vite --config build/vite.entry.config.js",
     "build": "vite build --emptyOutDir --mode production --config build/vite.config.js"
   },
   "repository": {
