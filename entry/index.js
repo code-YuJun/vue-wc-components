@@ -39,7 +39,6 @@
   // 动态加载资源
   function loadExtension(comp) {
     const { name, version, enabled } = comp;
-    console.log(name, version, enabled);
 
     // 降级开关：如果配置中该组件被禁用，直接跳过
     if (!enabled) return Promise.resolve();
